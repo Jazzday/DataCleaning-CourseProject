@@ -18,6 +18,7 @@ And feature variables. Feature variables have various distinctions:
 * suffixes **X**, **Y**, **Z** - are directions
 
 List of all features:
+
 3. tBodyAcc-mean()-X
 4. tBodyAcc-mean()-Y
 5. tBodyAcc-std()-Z
