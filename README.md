@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #This is an R project for Coursera "Getting and Cleaning Data" course in Data Science specialisation
+=======
+# DataCleaning-CourseProject
+Course project for Coursera "Getting and cleaning data"
+>>>>>>> origin/master
 
 The goal of the project is to collect, clean, reshape and analyze a dataset.
 
@@ -53,4 +58,8 @@ In that script:
 You can read data from Step 5 using this code (Courtesy of David Hood)
 
  data <- read.table("tidy_average.txt", header = TRUE) 
+<<<<<<< HEAD
     View(data)
+=======
+    View(data)
+>>>>>>> origin/master
