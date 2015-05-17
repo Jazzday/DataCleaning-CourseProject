@@ -1,6 +1,8 @@
 ## DataCleaning-CourseProject
 Course project for Coursera "Getting and cleaning data"
 
+###### Script written with Rstudio v 0.98.1103, R version 3.1.3, on windows x86_64 machine
+
 The goal of the project is to collect, clean, reshape and analyze a dataset. Data used in project comes from sensors in smartphones. 30 subject were performing activities such as walking and standing while wearing these smartphones. Data was collected and divided in test and train group. We want to read that data, reshape into one tidy dataset and then provide some basic summarision on this tidy dataset.
 To achieve that we use a script written in R named run_analysis.R which should do the following:
 
@@ -38,10 +40,7 @@ run_analysis script do the following:
 10. At this point we have a tidy dataset.
 
 ####Step 5
-11. Now we want to create new dataset consisting of averages of each variable for each activity and subject. We use aggregate function which groups by set of columns,
-	subject and activity in our case, and apply a function to each set of grouped values and make a desired data frame. We end up with 180 rows (6 activities, 30 subject)
-	and for each row we have average of each variable over this subject and activity.
-12. We have to manually rename first two columns to subject and activity and we drop last two columns (also subject and activity) and we end up with nice and tidy dataset.
+11. Now we want to create new dataset consisting of averages of each variable for each activity and subject. We use ddply function from dplyr package(chosen over aggregate for perfomance and easibility of usage) to group data frame by subject and activity and apply a function to each set of grouped values and make a desired data frame. We end up with 180 rows (6 activities, 30 subject),for each row we have average of each variable over this subject and activity.
 13. We use write.table to export our tidy data to txt file.	
 
 
