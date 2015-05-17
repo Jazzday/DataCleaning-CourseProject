@@ -16,6 +16,7 @@ And feature variables. Feature variables have various distinctions:
 * **prefix t** - Means time domain signal captured at constant rate of 50hz
 * **prefix f** - Means frequency domain signals, after applying FFT
 * suffixes **X**, **Y**, **Z** - are directions
+
 List of all features:
 3. tBodyAcc-mean()-X
 4. tBodyAcc-mean()-Y
