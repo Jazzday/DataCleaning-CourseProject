@@ -1,4 +1,5 @@
-#This is an R project for Coursera "Getting and Cleaning Data" course in Data Science specialisation
+# DataCleaning-CourseProject
+Course project for Coursera "Getting and cleaning data"
 
 The goal of the project is to collect, clean, reshape and analyze a dataset.
 
