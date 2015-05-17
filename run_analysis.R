@@ -3,7 +3,8 @@
 #Collect and reshape data from Human Activity Recognition Using Smartphones Dataset 
 
 
-#Reading test dataset
+#Reading test dataset, i assume that your working directory is UMI HAR Dataset
+#If it's not change it using setwd() function
   x_test <- read.table("test/X_test.txt")
   y_test <- read.table("test/y_test.txt")
   subject_test <- read.table("test/subject_test.txt")
@@ -23,7 +24,7 @@
   dataset <- rbind(test_data, train_data)
 
 #name variables in dataset using features.txt (Step 4)
-  features <- read.table("features.txt") #reading from features.txt
+  features <- read.table("features.txt")    #reading from features.txt
   names(dataset) <- c(as.character(features$V2))
   names(dataset)[length(dataset) - 1] <- "activity"
   names(dataset)[length(dataset)] <- "subject"
@@ -32,7 +33,7 @@
 #find positions of std and mean variable columns (step 2)
   column_indexes <- grep("-mean|-std", features[,2], ignore.case = TRUE)
 
-#we want activity and subject columns too, we append last two columns of dataset 
+#we want activity and subject columns too, so we append last two columns of dataset 
   column_indexes <- append(column_indexes, c(length(dataset) - 1,length(dataset)))
 
 #subset only needed columns
@@ -43,7 +44,7 @@
 
 #We need dplyr package, installing it if not present
   if("dplyr" %in% rownames(installed.packages()) == FALSE) {
-    install.packages("xtable")
+    install.packages("dplyr")
     }
   library("dplyr")
 
@@ -51,16 +52,15 @@
   tmp_join <- inner_join(dataset, activity_labels, by = c("activity" = "V1"))
   dataset$activity <- tmp_join$V2
 #Here we have final tidy dataset (End of Step 4)
-
-#Step 5. We use aggregate to create dataset containtig averages of each variable for each attivity and subject
-#ignore warnings, they are not harmful
-  tidy_average <-aggregate(dataset,by = list(dataset$subject, dataset$activity), FUN = mean)
-
-#We tidy up names and duplicated colmns
-  tidy_average$subject<- NULL
-  tidy_average$activity <- NULL
-  names(tidy_average)[1] <- "subject"
-  names(tidy_average)[2] <- "activity"
+  
+#We need plyr package for ddply, installing if needed  
+  if("plyr" %in% rownames(installed.packages()) == FALSE) {
+    install.packages("plyr")
+  }
+  library("plyr")
+  
+#Step 5. We use ddply function to take averages of each variable for each activity and subject
+  tidy_average <- ddply(dataset, .(subject,activity), .fun = numcolwise(mean))
 
 #Exporting final dataset to txt file
   write.table(tidy_average,"tidy_average.txt", row.name = FALSE)
