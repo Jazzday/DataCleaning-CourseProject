@@ -12,6 +12,7 @@
 #Merge test dataset
   test_data <- cbind(x_test,y_test,subject_test)
 
+
 #Read train dataset
   x_train <- read.table("train/X_train.txt")
   y_train <- read.table("train/y_train.txt")
@@ -64,3 +65,8 @@
 
 #Exporting final dataset to txt file
   write.table(tidy_average,"tidy_average.txt", row.name = FALSE)
+
+#Clearing memory
+  rm("x_train","y_train","subject_train","x_test","y_test","subject_test","features", "test_data",
+     "tmp_join", "activity_labels", "train_data", "dataset")
+  
